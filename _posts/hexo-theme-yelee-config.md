@@ -1,11 +1,12 @@
 ---
 title: hexo-theme-yelee配置
-date: 2018-10-18 18:18:02
 categories:
-- 零碎知识
+  - Web
 tags:
-- Hexo
-- Yelee
+  - Hexo
+  - Yelee
+abbrlink: 39c1ec60
+date: 2018-10-18 18:18:02
 ---
 
 &#8195;&#8195;Hexo有很多简洁美观的主题，这里记录一下hexo-theme-yelee的配置，hexo-theme-yelee是一款Hexo双栏博客主题，配置文件主要有两个：
@@ -25,6 +26,8 @@ tags:
 - 评论系统失效
 - 左侧栏GitHub图标为空
 - 不蒜子统计失效
+- 自定义404
+- 跳过指定文件渲染
 
 ### 主页显示文章
 &#8195;&#8195;刚配置好时候可以在所有文章中看到写的文章，但是在主页空空如也，原因是配置文件的参数和js中不符,查看`themes/yelee/layout/_partial/head.ejs`：
@@ -162,6 +165,87 @@ valine: //unpkg.com/valine@1.2.0-beta1/dist/Valine.min.js
 <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
 ```
 
+### 自定义404
+**公益404页面**
+按照常规操作：
+1. `hexo new page 404`
+2. `/source/404/index.md`
+3. 添加代码，正常我们修改完的代码如下:
+```html
+title: 404 Not Found：该页无法显示
+toc: false
+comments: false
+permalink: /404
+---
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8" />
+<title>404</title>
+</head>
+<body>
+<script type="text/javascript" src="//qzonestyle.gtimg.cn/qzone/hybrid/app/404/search_children.js" homePageName="回到我的主页" homePageUrl="http://www.gokuweb.com"></script>
+</body>
+</html>
+```
+
+试了下会先跳转到我们的404页面，再跳转到寻人页面，而不是直接进入寻人页面，如下：
+![custom404](/imgs/custom404.png)
+
+&#8195;&#8195;然后想了想，`source` 下md格式的文章都会被按照主题模板渲染成html，而公益寻人的404实际上不需要做渲染，比如我们的头像，文章分类等等，只需要简单一段JS就足够，所以如果你要展示一个契合自己主题的页面，如上图显示 `404 Not Found：该页无法显示` ，那就用如下代码：
+```html
+title: 404 Not Found：该页无法显示
+toc: false
+comments: false
+permalink: /404
+---
+```
+如果你想用公益404，那就直接把如下代码覆盖到服务端的 `404.html`：
+```html
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8" />
+<title>404</title>
+</head>
+<body>
+<script type="text/javascript" src="//qzonestyle.gtimg.cn/qzone/hybrid/app/404/search_children.js" homePageName="回到我的主页" homePageUrl="http://www.gokuweb.com"></script>
+</body>
+</html>
+```
+**服务端设置自定义404**
+&#8195;&#8195;页面做好后，服务端还要有相应的跳转处理，我在IIS10遇到一个坑，低版本貌似没事，我的 `web.config` 如下：
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <system.webServer>
+    <httpErrors errorMode="Custom">
+      <remove statusCode="404" subStatusCode="-1" />
+      <error statusCode="404" prefixLanguageFilePath="" path="E:\web\404.html" responseMode="File" />
+    </httpErrors>
+  </system.webServer>
+</configuration>
+```
+虽然IIS是图形界面配置，配置完后实际上会生成一个 `web.config` ，测试时候报错：
+```
+Absolute physical path "E:\web\404.html" is not allowed in system.webServer/httpErrors section in web.config file. Use relative path instead.
+```
+这个要修改配置，允许使用绝对路径：
+> 1. 左键服务器，双击配置编辑器，不是左键网站，是网站的爷爷目录；
+> 2. 搜索 `system.webServer/httpErrors`；
+> 3. 把`allowAbsolutePathsWhenDelegated` 的值改为 `True` 。
+
+### 跳过指定文件渲染
+&#8195;&#8195;比如 `README.md`、比如百度验证页面、比如谷歌验证页面、比如自定义404页面等，如果我们不想某些文件被渲染，就需要改一下配置文件  `_config.yml` ：
+```
+skip_render:
+    -  README.md
+    -  baidu_verify.html
+    -  google_verify.html
+    -  404/404.html
+```
+以 `source` 为根目录添加，所以不被渲染的文件实际上是 `source/README.md` 。
+
 ### RSS订阅
 需要安装插件：
 ```shell
@@ -221,3 +305,6 @@ $ hexo migrate <type>  #从其他博客系统[迁移内容](https://hexo.io/zh-c
 [快速开始](https://valine.js.org/quickstart.html)
 [评论系统从Disqus到Valine](https://suixinblog.cn/2018/09/valine.html)
 [不蒜子](http://ibruce.info/2015/04/04/busuanzi/)
+[腾讯寻人](https://xunren.qzone.qq.com/2/1479873225?_t_=0.1637590963522646)
+[Custom Error Pages – HTTP Error 500.19 – Internal Server Error](https://blogs.msdn.microsoft.com/benjaminperkins/2012/05/02/custom-error-pages-http-error-500-19-internal-server-error/)
+[hexo跳过指定文件的渲染](https://www.qtdebug.com/hexo-skip-render/)

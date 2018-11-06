@@ -1,25 +1,28 @@
 ---
 title: hexo部署到win云服务器
-date: 2018-10-30 00:03:43
 categories:
-- 零碎知识
+  - 运维
 tags:
-- Windows
-- Hexo
-- Git
-- Docker
-- Web Server
+  - Windows
+  - Hexo
+  - Git
+  - Docker
+  - Web Server
+abbrlink: 13b88df5
+date: 2018-10-30 00:03:43
 ---
 
-&#8195;&#8195;前前后后工信部备案花了19天，竟然还要公安备案？？？上午9点多收到短信还有点小激动，终于到了showtime，接下来就是把本地hexo部署到云服务器，心里默默 `./nginx` 、 配置 `githooks` 、 `hexo clean && hexo g && hexo d` 一顿操作美滋滋，然而进了云服务器后有点懵，我用的Winserver，很需要一个win系统所以换Linux是不可能换的。以为很简单的问题折腾了一整天，因为Win无论和Nginx还是Git搭配，都不是那么的行云流水。本文涉及Win下的WEB服务器、Docker、Git等，由入门到精通？不存在的，最终我选择妥协！
+&#8195;&#8195;我用的Winserver，因为很需要一个win系统所以换Linux是不可能换的。以为很简单的问题折腾了一整天，因为Win无论和Nginx还是Git搭配，都不是那么的行云流水。这里记录一下关于WEB服务器、Docker、Git在Win下**踩的坑**，由入门到精通？不存在的，最终我选择**妥协**！
 <!-- more -->
 
 ## 部署过程 & 原理
+&#8195;&#8195;前前后后工信部备案花了19天，竟然还要公安备案？？？上午9点多收到短信还有点小激动，终于到了showtime  ，接下来就是把本地hexo部署到云服务器，心里默默 `./nginx` 、 配置 `githooks` 、 `hexo clean && hexo g && hexo d`   一顿操作美滋滋，然而进了云服务器后有点懵。
+
 ### 过程
 > Win+Nginx+Githooks(Win下Nginx性能问题？)——
 Win+Docker+Nginx+Githooks(Win下Docker？)——
 Win+IIS+Githooks(Win下Git Hooks？)——
-Win+IIS+手动Git pull（妥协）,不想折腾的朋友已经可以跳过了，哈哈哈！！
+Win+IIS+手动Git pull（妥协）,**不想折腾的朋友已经可以跳过了**，哈哈哈！！
 
 常规hexo部署到linux云服务器方法如下：
 **本地操作**

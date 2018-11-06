@@ -1,13 +1,14 @@
 ---
 title: 内网渗透之reGeorg-Proxifier
-date: 2018-10-19 10:34:06
 categories:
-- 网络安全
+  - Web安全
 tags:
-- 内网渗透
-- Windows
-- reGeorg
-- Proxifier
+  - 内网安全
+  - Windows
+  - reGeorg
+  - Proxifier
+abbrlink: 3328f9cc
+date: 2018-10-19 10:34:06
 ---
 
 &#8195;&#8195;内网渗透常见一个场景就是双内网：目标服务器在内网，自己的机器也在内网。当你有一个system的webshell时候(也不是必须system，能把脚本完整上传即可)，发现是内网Window>系统，该如何3389呢？reGeorg+Proxifier是一个比较好的选择。
