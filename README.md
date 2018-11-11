@@ -1,1 +1,1 @@
-Blog: http://gokuweb.com/
+Blog: https://www.gokuweb.com/

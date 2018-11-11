@@ -22,7 +22,7 @@ date: 2018-10-30 00:03:43
 > Win+Nginx+Githooks(Win下Nginx性能问题？)——
 Win+Docker+Nginx+Githooks(Win下Docker？)——
 Win+IIS+Githooks(Win下Git Hooks？)——
-Win+IIS+手动Git pull（妥协）,**不想折腾的朋友已经可以跳过了**，哈哈哈！！
+Win+IIS+手动Git fetch（妥协）,**不想折腾的朋友已经可以跳过了**，哈哈哈！！
 
 常规hexo部署到linux云服务器方法如下：
 **本地操作**
@@ -131,7 +131,7 @@ deploy:
 > 2. 初始化一个裸仓库
 > 3. 加载WebDAV
 
-&#8195;&#8195;不过这个参考文档是2006年的，而且用的是Apache，我简单在IIS尝试了下并没有成功，至此已经精疲力尽，无心继续折腾，所以最后选择了手动在远程机器 `git pull` 。
+&#8195;&#8195;不过这个参考文档是2006年的，而且用的是Apache，我简单在IIS尝试了下并没有成功，至此已经精疲力尽，无心继续折腾，所以最后选择了手动在远程机器 `git fetch` 或者 `git clone`（HTTPS协议） 。
 
 ## 参考
 [使用Git Hook自动部署Hexo到个人VPS](https://www.liuxinggang.com/2016-06-17-%E4%BD%BF%E7%94%A8Git-Hook%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2Hexo%E5%88%B0%E4%B8%AA%E4%BA%BAVPS/)
