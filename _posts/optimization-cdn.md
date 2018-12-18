@@ -9,7 +9,7 @@ tags:
 - SEO
 - HTTPS
 ---
-&#8195;&#8195;内容涉及概述：1. 访问顶级域名自动跳转到www二级域名，在服务端做还是在CDN和域名解析时候做？比如 `abc.com` 跳转到 `https://www.abc.com` ； 2. 配置CDN时候域名解析CNAME冲突？MX冲突？A记录冲突？ 3. CDN分别给顶级域名和二级域名加速，还是只对二级域名加速？ 4. 文章链接更新为 `https://www.abc.com/category/abbrlink.html` 格式。折腾了这么久，网站配置方面的事情应该可以告一段落了。
+&#8195;&#8195;内容涉及：1. 访问顶级域名自动跳转到www二级域名，在服务端做还是在CDN和域名解析时候做？比如 `abc.com` 跳转到 `https://www.abc.com` ； 2. 配置CDN时候域名解析CNAME冲突？MX冲突？A记录冲突？ 3. CDN分别给顶级域名和二级域名加速，还是只对二级域名加速？ 4. 文章链接更新为 `https://www.abc.com/category/abbrlink.html` 格式。折腾了这么久，网站配置方面的事情应该可以告一段落了。
 <!-- more -->
 
 ## SEO优化

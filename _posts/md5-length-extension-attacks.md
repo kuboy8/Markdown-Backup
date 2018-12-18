@@ -9,7 +9,7 @@ abbrlink: a068ba2f
 date: 2018-11-11 15:42:49
 ---
 
-&#8195;&#8195;MD5长度扩展攻击，简单说就是知道 `MD5(secret + message)` 和 `secret` 长度的情况下，可以推算出 `MD5(secret + message||padding||m’)`，不过 `secret` 长度也可爆破。这里 `padding` 是 `secret` 后的填充字节，有固定填充规则；`m’` 可以是任意数据，`||` 是连接符，可以为空。严格来说也不算是MD5的漏洞，应该说是用法出了问题，比如用 `MD5(message + secret)` 就可避免。
+&#8195;&#8195;MD5长度扩展攻击，简单说就是知道 `MD5(secret + message)` 的**值**和 `secret` 的**长度**前提下，可以推算出 `MD5(secret + message||padding||m’)`，不过 `secret` 长度也可爆破。这里 `padding` 是 `secret` 后的填充字节，有固定填充规则；`m’` 可以是任意数据，`||` 是连接符，可以为空。严格来说也不算是MD5的漏洞，应该说是用法出了问题，比如用 `MD5(message + secret)` 就可避免。
 <!-- more -->
 
 &#8195;&#8195;前几天瞟了眼不知道什么年代的一套CMS，忽然发现登录验证用的是 `MD5(passwd + "xxx.com")` 形式，几个字从眼前飘过：MD5长度扩展攻击，就想着整理一篇文章，直到现在才有时间。
