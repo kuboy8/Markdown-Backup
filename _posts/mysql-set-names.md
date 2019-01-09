@@ -1,5 +1,5 @@
 ---
-title: 【转载】MySQL · 答疑解惑 · set names 都做了什么
+title: MySQL 中 SET NAMES 详解
 categories:
   - 转载
 tags:
@@ -9,7 +9,7 @@ abbrlink: b3472401
 date: 2018-12-05 18:41:37
 
 ---
-[【原文】](http://mysql.taobao.org/monthly/2015/05/07/) 
+&#8195;&#8195;在 PHP 中执行 SQL 语句前，通常会设置 set names，相当于同时设置了三个 session 变量，分别是客户端字符集、连接层字符集和结果字符集，这三个字符集对数据库有什么影响呢？
 <!-- more -->
 
 ## 背景
@@ -198,5 +198,6 @@ mysql>  SELECT id, name, hex(name) FROM t1;
 ## 总结
 &#8195;&#8195;`character_set_client` 和 `character_set_results` 是一定要和客户端一致，不要依赖于负负得正，`character_set_connection` 设置和 `character_set_client` 不一致，有丢失数据的风险，所以尽量也一致，总之这3个值就是要一样，还要和客户端一致，所以才有了 `set names` 这个快捷命令。关于为啥要有 `character_set_connection` 这一步转换，笔者目前还没看出来，以后理解了再更新，如果读者朋友知道的话，请不吝赐教。
 
-下面是我收集到的另外资料：
+## 参考
+[MySQL · 答疑解惑 · set names 都做了什么](http://mysql.taobao.org/monthly/2015/05/07/) 
 [mysql中character_set_connection的作用](https://www.cnblogs.com/lazyno/archive/2015/02/07/4278544.html)
